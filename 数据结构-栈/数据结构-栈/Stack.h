@@ -1,10 +1,11 @@
 
 typedef int TypeData;
+
 typedef struct Stack
 {
 	TypeData *array;
-	TypeData top;
-	TypeData capecity;
+	int top;
+	int capecity;
 }Stack;
 
 void StackInit(Stack *s);
@@ -16,4 +17,3 @@ void StackDestory(Stack *s);
 TypeData StackBack(Stack *s);
 void _CheckStck(Stack *s);
 void print(Stack *s);
-void Stackpop(Stack *s);

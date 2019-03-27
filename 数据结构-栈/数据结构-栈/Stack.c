@@ -70,11 +70,3 @@ void print(Stack *s)
 		printf("%d ", s->array[i]);
 	}
 }
-
-void Stackpop(Stack *s)
-{
-	assert(s);
-	s->array[s->top-1] = NULL;
-	free(s->array[s->top-1]);
-	//s->top--;
-}
