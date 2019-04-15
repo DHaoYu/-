@@ -129,7 +129,7 @@ namespace N1
 	}
 }
 
-using namespace N1;//作用域说明符，这句话可以省去：：
+using namespace N1;//作用域说明符，这句话可以省去::
 
 
 int main()
@@ -156,5 +156,17 @@ int main()
 #endif
 
 
+#if 0
+void TestFunc(int a = 10)//含缺省参数的函数，如果未传参数，则将会打印补的参数
+{
+	cout << a << endl;
+}
 
+
+int main()
+{
+	TestFunc(20);//如果传值20--->打印20
+	return 0;
+}
+#endif
 
