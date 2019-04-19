@@ -174,3 +174,17 @@ int main()
 }
 #endif
 
+#if 0
+int main()
+{
+	auto a = 10;
+	auto b = 12.34;
+	auto c = a + b;
+	cout << c << endl;
+	cout << typeid(a).name() << endl;
+	cout << typeid(b).name() << endl;
+	cout << typeid(c).name() << endl;
+	
+	return 0;
+}
+#endif

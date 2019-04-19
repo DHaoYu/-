@@ -65,7 +65,7 @@ int main()
 }
 #endif
 
-#if 0
+//#if 0
 
 //函数重载：必须在相同的作用域，必须有相同的函数名
 //只有返回值类型不同是构不成函数重载，参数列表必须不同（参数个数，参数类型，参数类型的次序）
@@ -86,20 +86,21 @@ double Add(int left, int right)
 }
 */
 
-double Add(double left, double right)
-{
-	return left + right;
-}
+//double Add(double left, double right)
+//{
+//	return left + right;
+//}
 
 
 int main()
 {
 	Add(1, 2);
-	Add(1.0, 2.0);
+	Add(1.0, 2.0); 
+	cout << Add(1.1, 2.2) << endl;
 	//Add(1, 2.0);//没有找到参数类型合适的函数，所以无法进行匹配
 	return 0;
 }
-#endif
+//#endif
 
 #if 0
 void TestFunc()
