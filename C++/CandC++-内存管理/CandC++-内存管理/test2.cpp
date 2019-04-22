@@ -3,7 +3,7 @@
 #include<iostream>
 
 using namespace std;
-
+#if 0 
 struct ListNode
 {
 	ListNode* _pNext;
@@ -66,7 +66,8 @@ private:
 };
 
 int main()
-{
+{   
 	List L;
 	return 0;
 }
+#endif
