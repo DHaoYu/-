@@ -1,5 +1,8 @@
 #define _CRT_SECURE_NO_WARNNINGS
+#include<malloc.h>
+#include<stdio.h>
 
+#if 0
 /*
 对于const进行针对于指针与变量的解释
 1.对于变量const只限制控制起内容不可修改
@@ -34,5 +37,50 @@ int main()
 	//(*a8) = 10;//false
 	//a9 = &b1;//false
 	//(*a9) = 10;//false
+	return 0;
+}
+#endif
+
+#if 0
+typedef struct SList
+{
+	int data;
+	struct SList* _pNext;
+}SList;
+
+void InitSList(SList* s)
+{
+	s = (SList*)malloc(sizeof(SList));
+	s->data = 0;
+}
+
+int main()
+{
+	const SList S;
+	InitSList(&S);
+	return 0;
+}
+#endif
+
+#if 0
+int main()
+{
+	int const a = 10;
+	int* const pa = &a;
+	printf("%d ", a);
+	*pa = 20;
+	printf("%d ", a);
+	return 0;
+}
+
+#endif
+
+#define S(x) x*x //在编译阶段会把代码中内容改为--> 没带括号-- 1+2*1+2
+#define S1(x) (x)*(x)
+int main()     
+{
+	printf("%d \n", S(1 + 2));
+	printf("%d \n", S1(1 + 2));
+
 	return 0;
 }
