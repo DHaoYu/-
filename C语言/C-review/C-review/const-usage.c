@@ -75,6 +75,7 @@ int main()
 
 #endif
 
+#if 0
 #define S(x) x*x //在编译阶段会把代码中内容改为--> 没带括号-- 1+2*1+2
 #define S1(x) (x)*(x)
 int main()     
@@ -84,3 +85,4 @@ int main()
 
 	return 0;
 }
+#endif
