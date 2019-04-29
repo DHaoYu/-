@@ -87,6 +87,7 @@ int main()
 }
 #endif
 
+#if 0
 //现代方式实现深拷贝
 class String
 {
@@ -140,3 +141,127 @@ int main()
 	TestString();
 	return 0;
 }
+#endif
+
+#if 0
+
+class String
+{
+public:
+	String(const char* str = "")
+	{
+		if (nullptr == str)
+		{
+			assert(str);
+			return;
+		}
+		_str = new char[strlen(str) + 1];
+		strcpy(_str, str);
+	}
+
+	String(const String& s)
+	{
+		if (this == &s)
+		{
+			return;
+		}
+		_str = new char[strlen(s._str) + 1];
+		strcpy(_str, s._str);
+	}
+	String& operator=(const String& s)
+	{
+		char* sTemp = new char[strlen(s._str) + 1];
+		delete[] _str;
+		_str = sTemp;
+
+		return *this;
+	}
+
+	~String()
+	{
+		if (nullptr == _str)
+			return;
+		delete[] _str;
+		_str = nullptr;
+	}
+private:
+	char* _str;
+};
+
+void TestString()
+{
+	String s1;
+	String s2("hello");
+	String s3(s2);
+
+	String s4("bit");
+	s3 = s4;
+	String s5(nullptr);
+}
+
+int main()
+{
+	TestString();
+	return 0;
+}
+#endif
+
+
+#if 0
+class String
+{
+public:
+	String(const char* str = "")
+	{
+		if (nullptr == str)
+			str = "";
+
+		_str = new char[strlen(str) + 1];
+		strcpy(_str, str);
+	}
+
+	String(const String& s)
+	{
+		_str = nullptr;
+		String temp(s._str);
+	
+		swap(_str, temp._str);
+	}
+
+	String& operator=(String s)
+	{
+		_str = nullptr;
+		swap(_str, s._str);
+
+		return *this;
+	}
+
+	~String()
+	{
+		if (nullptr == _str)
+			return;
+		delete[] _str;
+		_str = nullptr;
+	}
+
+private:
+	char* _str;
+};
+
+void TestString()
+{
+	String s1;
+	String s2("hello");
+	String s3(s2);
+
+	String s4("bit");
+	s3 = s4;
+	String s5(nullptr);
+}
+
+int main()
+{
+	TestString();
+	return 0;
+}
+#endif
