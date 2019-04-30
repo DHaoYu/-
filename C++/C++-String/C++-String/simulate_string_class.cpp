@@ -94,7 +94,6 @@ public:
 
 	void reserve(size_t n)
 	{
-
 		if (n>_capacity)
 		{
 			char* ptr = new char[n];
@@ -102,8 +101,6 @@ public:
 			swap(_str, ptr);
 			_capacity = n;
 		}
-
-
 	}
 
 	bool empty()
@@ -122,10 +119,17 @@ public:
 	////////////////////////////////////////////
 	//modify
 
+	string& check_full()
+	{
+		while (_size <= _capacity)
+		{
+			reserve(2 * _capacity);
+		}
+	}
+
 	string& push_back(char c)
 	{
-		if (_size == _capacity)
-			reserve(2 * _capacity);
+		check_full();
 
 		_str[_size ++] = c;
 		_str[_size] = '\0';
@@ -164,32 +168,32 @@ public:
 	string& append(const string& s)
 	{
 		_size += strlen(s._str);
+		check_full();
 
-		if (_capacity < _size)
-			_capacity = _size;
-		char* ptr = new char[_size];
-		strcpy(ptr, _str);
-		strcpy(ptr + _size, s._str);
-		delete[] _str;
-		_str = nullptr;
-
-		swap(_str, ptr);
+		strcpy(_str + _size, s._str);
 
 		return *this;
 	}
-//--------------------------------------------
+
 	string& append(const string& s, size_t pos, size_t n)
 	{
 		if (n > s._size - pos)
 			assert(false);
 
-		if (_size > _capacity)
-			reserve(2 * _capacity);
+		_size += n;
+		check_full();
 
 		for (size_t i = 0; i < n; i++)
 		{
 			push_back(s._str[pos++]);
 		}
+	}
+
+	string& append(const char* str)
+	{
+		_size = strlen(str) + _size;
+
+		check_full();
 	}
 
 private:
