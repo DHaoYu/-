@@ -187,6 +187,8 @@ public:
 		{
 			push_back(s._str[pos++]);
 		}
+
+		return *this;
 	}
 
 	string& append(const char* str)
@@ -194,8 +196,81 @@ public:
 		_size = strlen(str) + _size;
 
 		check_full();
+		strcpy(_str + strlen(_str), str);
+		_str[_size] = '\0';
+
+		return *this;
 	}
 
+	string& assign(const string& s)
+	{
+		if (_size < s._size)
+		{
+			check_full();
+			_size = s._size;
+			strcpy(_str, s._str);
+		}
+		else
+		{
+			_size = s._size;
+			strcpy(_str, s._str);
+		}
+		return *this;
+	}
+
+	string& assign(size_t n, char c)
+	{
+		_size = n;
+		check_full();
+
+		for(size_t i = 0; i < n; i++)
+		{
+			push_back(c);
+		}
+	
+		return *this;
+	}
+
+	string& assign(const char* str)
+	{
+		_size = strlen(str);
+		strcpy(_str, str);
+
+		return *this;
+	}
+
+	string& insert(size_t pos1, const string& s, size_t pos2, size_t n)
+	{
+		_size += s._size;
+		check_full();
+
+		for (size_t i = n; i > n; i--)
+		{
+			_str[--_size] = _str[i + pos1];
+		}
+		for (size_t i = 0; i < n; i++)
+		{
+			push_back(s._str[pos2 + 1]);
+		}
+
+		return *this;
+	}
+
+	string& erase(size_t pos , size_t n)
+	{
+		if (pos + n >= _size)
+		{
+			_str[pos] = '\0';
+		}
+		else
+		{
+			while (n + pos<= _size)
+			{
+				_str[pos] = _str[pos + n++];
+			}
+			_str[pos + n] = '\0';
+		}
+	}
 private:
 	char* _str;
 	size_t _capacity;
