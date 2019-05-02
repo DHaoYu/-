@@ -82,6 +82,7 @@
     <ClCompile Include="string-usage1.cpp" />
     <ClCompile Include="string-usage2.cpp" />
     <ClCompile Include="simulate_string_class.cpp" />
+    <ClCompile Include="sumilate_string_class-2.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

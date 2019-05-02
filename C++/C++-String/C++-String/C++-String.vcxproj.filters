@@ -27,5 +27,8 @@
     <ClCompile Include="string-solve-ShallowCopy.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="sumilate_string_class-2.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
