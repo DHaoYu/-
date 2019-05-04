@@ -240,3 +240,20 @@ int main()
 	return 0;
 }
 #endif
+
+#if 0
+const int& Test()
+{
+	int a = 10;
+	return a;
+}
+
+int main()
+{
+	int b = Test();
+	cout << b;
+	b = 100;
+	cout << b;
+	return 0;
+}
+#endif
