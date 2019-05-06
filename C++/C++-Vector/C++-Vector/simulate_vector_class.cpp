@@ -2,6 +2,7 @@
 #include<iostream>
 #include<string>
 #include<assert.h>
+#include<algorithm>
 
 using namespace std;
 
@@ -90,22 +91,22 @@ namespace bit
 			return true;
 		}
 
-		void resize(size_t size, const T& data = T())
+		void resize(size_t sz, const T& data = T())
 		{
-			if (size <= size())
+			if (sz <= size())
 			{
-				_finish = size + start;
+				_finish = sz + _start;
 			}
 			else
 			{
-				if (size > capacity())
-					reserve(size);
+				if (sz > capacity())
+					reserve(sz);
 
-				for (size_t i = size(); i < size; i++)
+				for (size_t i = size(); i < sz; i++)
 				{
 					*_finish++ = data;
 				}
-				_finish = _start + size;
+				_finish = _start + sz;
 			}
 		}
 
@@ -201,12 +202,15 @@ namespace bit
 
 		iterator insert(iterator pos, const T& data)
 		{
+			assert(pos - _finish);
+			size_t n = pos - _start;
 			if (_finish == _endOfStorage)
 				reserve(2 * capacity());
 
-			for (size_t i = size(); i >= _finish - pos; i--)
-				_start[i++] = _start[i];
-			_start[i] = data;
+			for (size_t i = size(); i >= size() - n; i--)
+				_start[i + 1] = _start[i];
+
+			_start[n] = data;
 			_finish++;
 			return pos;
 		}
@@ -222,25 +226,25 @@ namespace bit
 		iterator erase(iterator first, iterator last)
 		{
 			if (first < begin())
-				first = brgin();
+				first = begin();
 			if (last > end())
 				last = end();
 
-			size_t interval = last - first;
+			size_t interval = last - first + 1;//1~3区间为三个值，所以区间需要加一
 			size_t begin = first - _start;
-			for (size_t i = last - _start; i <= size(); i++)
+			for (size_t i = last - _start + 1; i < size(); i++)
 			{
 				_start[begin++] = _start[i];
 			}
 			_finish -= interval;
-			return pos;
+			return first;
 		}
 
 		void swap(vector<T>& v)
 		{
-			swap(_start, v._start);
-			swap(_finish, v._finish);
-			swap(_endOfStorage, v._endOfStorage);
+			std::swap(_start, v._start);
+			std::swap(_finish, v._finish);
+			std::swap(_endOfStorage, v._endOfStorage);
 		}
 
 		void clear()
@@ -266,6 +270,7 @@ void PrintVector(const bit::vector<int>& v)
 	cout << endl;
 }
 
+#if 0
 int main()
 {
 	bit::vector<int> v1;
@@ -295,3 +300,168 @@ int main()
 	cout << endl;
 	return 0;
 }
+#endif
+
+#if 0
+int main()
+{
+	bit::vector<int> v;
+	v.push_back(1);
+	v.push_back(2);
+	v.push_back(3);
+	v.push_back(4);
+	auto it = v.begin();
+	while (it != v.end())
+	{
+		cout << *it << " ";
+		it++;
+	}
+	cout << endl;
+
+	it = v.begin();
+	while (it != v.end())
+	{
+		*it *= 2;//必须为一个可以修改的it，非const类型
+		++it;
+	}
+	PrintVector(v);
+	return 0;
+}
+#endif
+
+#if 0
+int main()
+{
+	size_t size;
+	bit::vector<int> v;
+	v.push_back(1);
+	size = v.capacity();
+	cout << v.capacity() << endl;
+	for (int i = 0; i <= 100; i++)
+	{
+		v.push_back(i);
+		if (size != v.capacity())
+		{
+			size = v.capacity();
+			cout << v.capacity() << endl;
+		}
+	}
+	return 0;
+}
+#endif
+
+#if 0
+int main()
+{
+	bit::vector<int> v1;
+	cout << v1.capacity() << endl;
+	v1.reserve(100);
+	cout << v1.capacity() << endl;
+	v1.reserve(10);
+	cout << v1.capacity() << endl; 
+
+	return 0;
+}
+#endif
+
+#if 0
+int main()
+{
+	bit::vector<int> v2;
+	for (int i = 0; i <= 10; i++)
+		v2.push_back(i);
+	cout << v2.size() << endl;
+
+	v2.resize(5);
+	auto it = v2.begin();
+	while (it != v2.end())
+	{
+		cout << *it << " ";
+		it++;
+	}
+	cout << endl;
+	cout << v2.size() << endl;
+	cout << v2.capacity() << endl;
+
+	v2.resize(10);
+	it = v2.begin();
+	while (it != v2.end())
+	{
+		cout << *it << " ";
+		it++;
+	}
+	cout << endl;
+	cout << v2.size() << endl;
+	cout << v2.capacity() << endl;
+
+	v2.resize(100, 2);
+	it = v2.begin();
+	while (it != v2.end())
+	{
+		//cout << *it << " ";
+		it++;
+	}
+	cout << endl;	
+	cout << v2.size() << endl;
+	cout << v2.capacity() << endl;
+
+	return 0;
+}
+#endif
+
+#if 0
+int main()
+{
+	int array[] = { 1, 2, 3, 4 };
+	bit::vector<int> v(array, array + sizeof(array) / sizeof(array[0]));
+	auto it = find(v.begin(), v.end(), 3);//find 函数为<algorithm>库函数内的迭代器调用该函数
+	cout << *it << endl;
+	v.insert(it, 30);
+	PrintVector(v);
+	//处理迭代器失效问题
+	//防止迭代器失效 it需要重置
+	it = find(v.begin(), v.end(), 3);
+	v.erase(it);
+	PrintVector(v);
+	v.push_back(10);
+	v.push_back(10);
+	v.push_back(10);
+	PrintVector(v);
+	v.erase(v.begin(), v.begin() + 2);
+	PrintVector(v);
+
+	return 0;
+}
+#endif
+
+#if 0
+int main()
+{
+	int array[] = { 1, 2, 3, 4 };
+	bit::vector<int> v(array, array + sizeof(array) / sizeof(array[0]));
+	v[0] = 10;
+	cout << v[0] << endl;
+	for (size_t i = 0; i < v.size(); i++)
+	{
+		cout << v[i] << " ";
+	}
+	cout << endl;
+
+	bit::vector<int> swapv;
+	swapv.swap(v);
+	for (size_t i = 0; i < v.size(); i++)
+	{
+		cout << v[i] << " ";
+	}
+	cout << endl;
+
+	for (size_t i = 0; i < swapv.size(); i++)
+	{
+		cout << swapv[i] << " ";
+	}
+	cout << endl;
+
+	return 0;
+}
+#endif
+
