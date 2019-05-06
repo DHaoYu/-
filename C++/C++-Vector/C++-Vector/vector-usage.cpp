@@ -277,3 +277,16 @@ int main()
 	return 0;
 }
 #endif
+
+#if 0
+int main()
+{
+	int a = int();
+	cout << a << endl;
+	int b(a);
+	cout << b << endl;
+
+	return 0;
+}
+#endif
+
