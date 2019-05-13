@@ -180,6 +180,7 @@ int main()
 }
 #endif
 
+#if 0
 class Time
 {
 	friend class Date;//ÏàËÆµÄ
@@ -234,3 +235,4 @@ int main()
 {
 	return 0;
 }
+#endif
