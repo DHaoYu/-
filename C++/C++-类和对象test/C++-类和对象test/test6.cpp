@@ -45,7 +45,6 @@ int main()
 }
 #endif
 
-
 #if 0
 class Test
 {
@@ -59,6 +58,7 @@ public:
 	//普通成员函数含有this指针，可以访问普通成员变量以及非静态成员变量
 	int Getprivate()
 	{
+		_count += 1;
 		return _a;
 	}
 
@@ -77,14 +77,15 @@ public:
 
 private:
 	int _a;
-	static int _count;
+	static int _count;//静态成员变量也受访问限定符的约束
 };
 
-//int Test::_count = 0;//初始化在类得外部进行
+int Test::_count = 0;//初始化在类得外部进行
 
 int main()
 {
 	Test t;
+	//cout << t._count << endl;
 	cout << t.Getprivate() << endl;
 	cout <<Test::Getstatic() << endl;///访问静态成员变量必须加上作用空间
 	return 0;
