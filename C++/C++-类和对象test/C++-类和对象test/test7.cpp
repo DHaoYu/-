@@ -155,7 +155,7 @@ class T
 {
 public:
 private:
-	//static int _count = 0;//error但是
+	//static int _count = 0;//error 
 	int _a = 0;//在C++11中，非静态成员变量的初始化可以直接放在声明时进行初始化
 	int b = 0;
 	int* array = new int[10];
