@@ -1,5 +1,7 @@
 #define _CRT_SECURE_NO_WARNINGS
 
+#if 0
+//根据密码的内容来评定密码等级
 #include<iostream>
 #include<string>
 
@@ -174,3 +176,5 @@ int main()
 	GetPwdLevel(pPasswordStr);
 	return 0;
 }
+#endif
+
