@@ -63,7 +63,7 @@ int main()
 	cout << ra << endl;
 	int const& rb = a;
 	cout << rb << endl;
-//	int& const rc = a; //warning 直接将const限定符进行了忽略
+	//error int& const rc = a; //warning 直接将const限定符进行了忽略
 	const int* pa = &ra;
 	return 0;
 }
