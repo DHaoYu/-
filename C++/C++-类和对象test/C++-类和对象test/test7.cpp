@@ -150,6 +150,7 @@ int main()
 }
 #endif
 
+#if 0
 //C++11
 class T
 {
@@ -166,3 +167,43 @@ int main()
 	T t;
 	return 0;
 }
+#endif
+
+#if 0
+class Test
+{
+public:
+	Test()
+	{}
+
+	static void TestFuncSta()
+	{
+		cout << _a << endl;
+		//cout << _b << endl;同理无法调用普通成员变量
+		//TestFunc1();//error 因为普通成员函数中都存在默认的this指针
+		//静态成员函数中没有this指针，所以无法调用普通成员函数
+	}
+
+	void TestFunc1()
+	{
+		TestFuncSta();//普通成员函数可以访问静态成员函数，可以正常传参
+		cout << _a << _b << endl;//成员变量也都可以访问
+	}
+
+	~Test()
+	{}
+
+private:
+	static int _a;
+	int _b;
+};
+
+int Test::_a = 0;
+
+int main()
+{
+	Test t;
+	t.TestFunc1();
+	return 0;
+}
+#endif
