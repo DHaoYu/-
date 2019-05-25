@@ -1,180 +1,134 @@
-#define _CRT_SECURE_NO_WARNINGS
-
-#if 0
-//根据密码的内容来评定密码等级
+#define _CRT_SECURE_NO_WARNINGS 
+#include<stdio.h>
 #include<iostream>
-#include<string>
-
 using namespace std;
 
-
-void PrintLevel(int score)
+#if 0
+//对数组进行排序--直接插入排序
+int* SortLevel(int N,int** arr)
 {
-	if (score >= 90)
-	{
-		cout << "VERY_SECURE" << endl;
-		return;
-	}
-
-	if (score >= 80)
-	{
-		cout << "SECURE" << endl;
-		return;
-	}
-
-	if (score >= 70)
-	{
-		cout << "VERY_STRONG" << endl;
-		return;
-	}
-
-	if (score >= 60)
-	{
-		cout << "STRONG" << endl;
-		return;
-	}
-
-	if (score >= 50)
-	{
-		cout << "AVERAGE" << endl;
-		return;
-	}
-
-	if (score >= 25)
-	{
-		cout << "WEAK" << endl;
-		return;
-	}
-
-	if (score >= 0)
-	{
-		cout << "VERY_WEAK" << endl;
-		return;
-	}
-
+    int i=0;
+    int j=0;
+    for(i=1;i<N;i++)
+    {
+    	int i=j;
+        while(j)
+        {
+            if(arr[j]<arr[j-1])
+                swap(arr[j],arr[j-1]);
+            j--;
+        }
+    }
 }
+#endif
 
-
-int GetLenScore(string& p)
+#if 0
+//参赛选手：每个组3人，分为n组，总人数为N = 3n，每组中间水平的人代表该组
+//平均水平，求平均水平最高应该怎么分配，例如：1 2 5 5 5 8
+//可分为 125 558 平均为7  但是，分为155 258 平均则为10 选取10进行输出
+int Max_avgLevel(int N, int arr[])
 {
-	int i = 0;
-	while (p[i] != '\0')
-	{
-		i++;
-	}
-	if (i <= 4)
-		return 5;
-	if (i <= 7)
-		return 10;
-	if (i >= 8)
-		return 25;
+	// SortLevel(N,&arr);
+	int j = 0;
+	int n = N / 3;
 
-	return 0;
-}
-
-int GetAphScore(string& p)
-{
-	int i = 0;
-	int count1 = 0;
-	int count2 = 0;
-	while (p[i] != '\0')
+	for (int i = 1; i<N; i++)
 	{
-		//if ((p[i] <= 'Z' && p[i] >= 'A') || (p[i] <= 'z' &&p[i] >= 'a'))
-		if (p[i] <= 'Z' && p[i] >= 'A')
+		j = i;
+		while (j && (arr[j]<arr[j - 1]))
 		{
-			count1++;
+			swap(arr[j], arr[j - 1]);
+			j--;
 		}
-		if (p[i] <= 'z' &&p[i] >= 'a')
-		{
-			count2++;
-		}
-		i++;
 	}
-	if (count1 == i || count2 == i)
-		return 10;
-	if (count1 != 0 && count2 != 0)
-		return 20;
-
-	return 0;
-}
-
-int GetNumScore(string& p)
-{
-	int i = 0;
-	int count = 0;
-	while (p[i] != '\0')
+	for (int j = 0; j<n; j++)
 	{
-		if (p[i] >= '0' && p[i] <= '9')
+		for (int i = 2 * n - 1; i>n; i--)
 		{
-			count++;
+			if (arr[i] < arr[i + n - 1])
+				swap(arr[i], arr[i - 1 + n]);
+
+			if (arr[i]>arr[i + n])
+				swap(arr[i], arr[i + n]);
 		}
-		i++;
 	}
-	if (count == 0)
-		return 0;
-	if (count == 1)
-		return 10;
-	return 20;
-}
 
-int GetCharScore(string& p)
-{
-	int i = 0;
-	int count = 0;
-	while (p[i] != '\0')
+	int sum = 0;
+
+	for (int i = n; i<2 * n; i++)
 	{
-		if ((p[i] >= 33 && p[i] <= 47) || (p[i] >= 58 && p[i] <= 64)
-			|| (p[i] >= 91 && p[i] <= 96) || (p[i] >= 123 && p[i] <= 126))
-			count++;
+		sum += arr[i];
 
-		i++;
 	}
-	if (count == 0)
-		return 0;
-	if (count == 1)
-		return 10;
-	return 25;
+	return sum;
 }
 
-int GetRewardScore(int len, int aph, int num, int ch)
+
+void swap(int& left, int& right)
 {
-	if (num != 0 && aph == 20 && ch != 0)
-		return 5;
-	if (num != 0 && aph == 10 && ch != 0)
-		return 3;
-	if (num != 0 && aph != 0)
-		return 2;
-	return 0;
+	int temp = 0;
+	temp = left;
+	left = right;
+	right = temp;
 }
-
-
-void GetPwdLevel(string& p)
-{
-	int len, aph, num, ch, reward;
-	int score = 0;
-	len = GetLenScore(p);
-	score += len;
-	aph = GetAphScore(p);
-	score += aph;
-	num = GetNumScore(p);
-	score += num;
-	ch = GetCharScore(p);
-	score += ch;
-	reward = GetRewardScore(len, aph, num, ch);
-	score += reward;
-	PrintLevel(score);
-}
-
-
 
 int main()
 {
-	char arr[16];
-	cin >> arr;
-	string pPasswordStr(arr, arr + 16);
-	
-	GetPwdLevel(pPasswordStr);
+	int n = 0;
+	cin >> n;
+	int N = 3 * n;
+	if (n = 0)
+	{
+		cout << 0 << endl;
+		return 0;
+	}
+	int* array = new int[N];
+	int i = 0;
+
+	while (i<N)
+	{
+		cin >> array[i];
+		i++;
+	}
+
+	cout << Max_avgLevel(N, array) << endl;
+
 	return 0;
 }
 #endif
 
+#if 0
+//输入两个字符串，从第一字符串中删除第二个字符串中的所有字符
+//例子：they are student  ||  aeiou  --> thy r stdnts
+
+#include<string>
+
+string& Del_char(string& s1, string& s2)
+{
+	size_t i = 0;
+	while (i < s2.size())
+	{
+		for (size_t j = 0; j < s1.size(); j++)
+		{
+			if (s1[j] == s2[i])
+				s1.erase(s1.begin()+j);
+		}
+		i++;
+	}
+	return s1;
+}
+
+int main()
+{
+	string s1,s2;
+	getline(cin, s1);
+	getline(cin, s2);
+
+	s1 = Del_char(s1, s2);
+	for (size_t i = 0; i < s1.size(); i++)
+		cout << s1[i];
+	cout << endl;
+
+	return 0;
+}
+#endif
