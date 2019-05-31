@@ -52,6 +52,8 @@ int main()
 //}
 #endif
 
+
+#if 0
 //有错误----逻辑方面有点难，不太会写
 #include<iostream>
 #include<string>
@@ -131,3 +133,4 @@ int main()
 
 	return 0;
 }
+#endif
