@@ -132,3 +132,48 @@ int main()
 	return 0;
 }
 #endif
+
+#if 0
+int main()
+{
+	//printf("%i", 10);//%d 和%i效果相同，都是十进制输出
+	//printf("%5d\n%5d", 10,100);//%md m为指定输出字段的宽度，如果m>输出宽度，则前用空格补齐
+	//long long int a = 100000000000000;
+	//printf("%lld\n", a);//%lld 输出long long长整型值
+	//long b = 12343575;
+	//printf("%ld\n", b);//%ld 输出long长整型值
+	//printf("%o\n", 10);//%o 输出八进制
+	//printf("%x\n", 10);//%x 输出十六进制(字母为小写)
+	//printf("%X\n", 10);//%X 输出十六进制(字母为大写)
+	//unsigned u = -100;
+	//printf("%u %d", u, u);//负数以%u输出则输出其补码/%d输出-100
+	//char ch = 'a';
+	//printf("%5c", ch);//尾部对齐5个字符
+	//char* str = "donghaoyu";
+	//printf("%-10s%-10s\n%5.3s\n%-6.3s\n", str, str, str, str);
+	//-%ms 其中-m为前部对齐，%ms 其中m为尾部对齐
+	//%m.ns 其中.n为截取前n个字符输出。 没有m.-n这种用法
+	//printf("%lf", 12354.123123123);//%f保留小数后的前六位，%m.nf.%-m.nf都适用
+	//printf("%e", 16);//输出e的次方 %m.ne %-m.ne 都适用
+	//printf("%g", 16.123);//根据数值大小，自动选用f或e格式（选择输出时占宽度较小的一种）
+
+	
+	return 0;
+}
+#endif
+
+int main()
+{
+
+	char **p, i;
+	char *strs[] = {
+		"one",
+		"two",
+		"three"
+	};
+	p = strs;//strings是地址的地址，所以要定义**p
+	for (i = 0; i<3; i++)
+		printf("%s\n", *(p++));
+
+	return 0;
+}
