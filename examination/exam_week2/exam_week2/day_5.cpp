@@ -22,6 +22,7 @@ int getLCA(int a, int b) {
 }
 #endif
 
+#if 0
 //求一个整形数中的二进制位中连续1的个数
 int main()
 {
@@ -43,3 +44,4 @@ int main()
 	cout << max << endl;
 	return 0;
 }
+#endif
