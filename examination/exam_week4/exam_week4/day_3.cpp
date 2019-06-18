@@ -1,89 +1,103 @@
 #define _CRT_SECURE_NO_WARNINGS 1
+
 #include<iostream>
+#include<vector>
 using namespace std;
-#if 0
-int main()
-{
-	int a = 10;
-	int b = 20;
-	a = a - b;
-	b = a + b;
-	a = b - a;
-	cout << a << " " << b << endl;
-	return 0;
-}
-#endif 
 
 #if 0
 int main()
 {
-	double a = 0.0000;
-	if (a == 0.0)
-		printf("yes");
-	int i = 3;
-	printf("%d %d", ++i, ++i);//先将++i全部计算完成之后在进行打印
-	return 0;
-}
-#endif
-
-
-#if 0
-int main()
-{
-	int n;
-	int sum = 0;
-	int count = 0;
-	cin >> n;
-	for (int i = 2; i <= n; i++)
+	int T, n, k;
+	int i = 0;
+	vector<int> V, v1, v2;
+	cin >> T;
+	while (T--)
 	{
-		sum = 0;
-		for (int j = 1; j <= (i/2)+1; j++)
+		i = 0;
+		cin >> n >> k;
+		V.resize(2 * n);
+		v1.resize(n);
+		v2.resize(n);
+		while (i < 2 * n)
 		{
-			if (i%j == 0)
-				sum += j;
+			cin >> V[i];
+			i++;
 		}
-		if (sum == i)
+
+		while (k--)
 		{
-			count++;
+			for (i = 0; i < n; i++)
+			{
+				v1[i] = V[i];
+				v2[i] = V[i + n];
+			}
+			int j = 0;
+			for (i = 0; i < n; i++)
+			{
+				V[j++] = v1[i];
+				V[j++] = v2[i];
+			}
 		}
+		for (auto e : V)
+		{
+			cout << e << " ";
+		}
+		cout<<endl;
 	}
-	cout << count << endl;
-	return -1;
+
+	return 0;
 }
 #endif
+
 #if 0
 #include<string>
 
 int main()
 {
-	string str;
-	getline(cin, str);
-	size_t pos = str.find('-');
-	if (str.find("joker JOKER")!=-1)
-		cout << "joker JOKER" << endl;
-	else if (pos)
+	string com;
+	int n;
+	int i = 1;
+	int k = 0;
+	while (cin >> n)
 	{
-		string s1, s2;
-		s1 = str.substr(0, pos);
-		s2 = str.substr(pos + 1);
-		string line = "345678910JQKA2joker JOKER";
-		if (s1[0] == '2')
-			s1[0] += 'A';
-		if (s2[0] == '2')
-			s2[0] += 'A';
-		if (s1.size() == s2.size())
-		if (s1[0] > s2[0])
-			cout << s1 << endl;
+		fflush(stdin);
+		getline(cin, com);
+		while (com[k])
+		{
+			if (com[k] == 'U')
+			{
+				i -= 1;
+				if (i == 0)
+					i = n;
+			}
+			if (com[k] == 'D')
+			{
+				i += 1;
+				if (i == n + 1)
+					i = 1;
+			}
+			k++;
+		}
+		k = 0;
+		if (n <= 4)
+		{
+			while (n--)
+				cout << n << " ";
+			cout << endl;
+		}
 		else
-			cout << s2 << endl;
-		else if (s1.size() == 7)
-			cout << s1 << endl;
-		else
-			cout << s2 << endl;
-
+		{
+			int j = i;
+			while (j + 4 > n+1)
+				j--;
+				cout << j++ << " ";
+				cout << j++ << " ";
+				cout << j++ << " ";
+				cout << j++ << " ";
+			cout << endl;
+		}
+		cout << i << endl;
+		i = 1;
 	}
-	else
-		cout << "ERROR" << endl;
-	return 0;
 }
-#endif   
+#endif
