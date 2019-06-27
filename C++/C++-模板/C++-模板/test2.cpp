@@ -81,3 +81,20 @@ int main()
 	return 0;
 }
 #endif
+
+#if 0
+int Sum_Solution(int n)//不使用乘除法 for while if else switch case 等关键字
+//完成1+2+...+n
+{
+	//运用递归
+	int ans = n;
+	ans && (ans += Sum_Solution(n - 1));
+	return ans;
+}
+
+int main()
+{
+	cout << Sum_Solution(10) << endl;
+	return 0;
+}
+#endif
