@@ -115,6 +115,8 @@ int main()
 	Printer<int> pi1(1);
 	Printer<int> pi2(2);
 	Printer<double> pd1(1.1);
-
+	cout << &pi1._val << endl;//pi1与pi2实例化的类型相同，初始化时生成一份static成员共用
+	cout << &pi2._val << endl;
+	cout << &pd1._val << endl;//pd1定义的是double类型，所以在所有的double类型对象中，共用一份
 	return 0;
 }
