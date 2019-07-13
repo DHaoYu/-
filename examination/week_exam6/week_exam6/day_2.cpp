@@ -23,7 +23,7 @@ int main()
 				money += 579;
 		}
 		if (y1 == y2)
-		if ((year%4==0 && year%100!=0)  || ( year%400 == 0))
+		if ((y1%4==0 && y1%100!=0)  || ( y1%400 == 0))
 
 			money += 1;
 		int temp = 0;
