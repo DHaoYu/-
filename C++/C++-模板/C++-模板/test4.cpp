@@ -88,6 +88,8 @@ int main()
 }
 #endif
 
+#if 0
+
 template<class T>
 class Printer
 {
@@ -120,3 +122,29 @@ int main()
 	cout << &pd1._val << endl;//pd1定义的是double类型，所以在所有的double类型对象中，共用一份
 	return 0;
 }
+#endif
+
+#if 0
+//默认实参
+template<class T,class F = less<T>>
+int compare(const T& left, const T& right, F f = F())//创建无名对象，赋值给f
+{
+	if (f(left, right))//调用f构造函数
+	{
+		cout << "left" << endl;
+	}
+	if (f(right, left))
+	{
+		cout << "right" << endl;
+	}
+	return 0;
+}
+
+int main()
+{
+	compare(1, 2);
+	compare(3, 2);
+	return 0;
+}
+#endif
+
