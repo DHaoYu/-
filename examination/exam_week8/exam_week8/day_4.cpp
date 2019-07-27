@@ -106,3 +106,55 @@ int main()
 	return 0;
 }
 #endif
+#include<iostream>
+#include<string>
+#include<vector>
+#include<stdio.h>
+
+using namespace std;
+
+#if 0
+//Linux
+void runShell(vector<string>& v)
+{
+	char* argv[32];
+	for (size_t i = 0; i<v.size(); i++)
+	{
+		argv[i] = (char*)v[i].c_str();
+	}
+	execvp(v[0], argv[v.size()]);
+}
+
+
+
+void transStr(string& cmd)
+{
+	vector<string> v;
+	size_t begin = 0;
+	size_t end=0;
+		while (end != string::npos)
+		{
+			end = cmd.find(' ');
+			v.push_back(cmd.substr(begin, end - begin));
+			cmd = cmd.substr(end + 1, cmd.size() - end - 1);
+		}
+		for (size_t i = 0; i < v.size(); i++)
+			cout << v[i] << " ";
+}
+	int main()
+	{
+		string tip = "[minishell]$ ";
+		//getchar();
+		//fflush(stdin);
+		string cmd;
+		vector<string> vcmd;
+		while (1)
+		{
+			cout << tip;
+			getline(cin, cmd);
+			transStr(cmd);
+		}
+		return 0;
+	}
+
+#endif
