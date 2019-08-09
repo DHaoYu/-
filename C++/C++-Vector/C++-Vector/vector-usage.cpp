@@ -289,4 +289,14 @@ int main()
 	return 0;
 }
 #endif
+#include<algorithm>
 
+#if 1
+int main()
+{
+	vector<int> v{ 1, 2, 3, 4, 5, 6, 7, 8 };
+	size_t pos = find(v.begin(), v.end(), 8) - v.begin();
+	cout << pos << endl;
+	return 0;
+}
+#endif
