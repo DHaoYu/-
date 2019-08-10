@@ -130,6 +130,7 @@ int main()
 }
 #endif
 
+#if 0
 #include<string>
 //类模板别名
 //模板的声明只能在全局，命名空间或类中使用***
@@ -142,3 +143,4 @@ int main()
 	PairInt p;//定义一个pair<int,int> 对象 p
 	return 0;
 }
+#endif
