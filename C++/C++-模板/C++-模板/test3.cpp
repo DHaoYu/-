@@ -59,3 +59,81 @@ private:
 	int val;
 };
 #endif
+
+#if 0
+//类模板偏特化中的的部分特化和进一步确定化
+template <typename T>
+class iterator_traits<T*>
+{ 
+public: 
+	iterator_traits()
+	{
+		cout << "Data<T1, int>" << endl;
+	} 
+	~iterator_traits()
+	{}
+};
+
+int main()
+{
+	iterator_traits<int*> d;
+	return 0;
+}
+#endif
+
+
+#if 0
+
+template<typename T>
+class iterator_traits<T*>//该类在库中存在，可以直接进行偏特化
+{
+public:
+	iterator_traits()
+	{
+		cout << "模版偏特化，特化常规指针" << endl;
+	}
+
+	~iterator_traits()
+	{
+
+	}
+};
+
+int main()
+{
+	iterator_traits<int*> i;
+	return 0;
+}
+#endif
+
+#if 0
+template<class T>//进行部分特化时，需要先写出类得原模板类（模板泛化），在接下来的类中，进行特化
+class Data
+{
+public:
+	Data()
+	{
+		cout << "!!!" << endl;
+	}
+private:
+
+};
+
+template <typename T>
+class Data<T*>
+{
+public:
+	Data()
+	{
+		cout << "Data<T1, int>" << endl;
+	}
+	~Data()
+	{}
+};
+
+int main()
+{
+	Data<int*> d;
+	return 0;
+}
+#endif
