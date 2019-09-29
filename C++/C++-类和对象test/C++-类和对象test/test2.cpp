@@ -29,10 +29,9 @@ public:
 
 	void InitDate(int year = 1990, int month = 1, int day = 1)
 	{
-		_year = year;
+		this->_year = year;
 		_month = month;
 		_day = day;
-		cout << _year << "/" << _month << "/" << _day << endl;
 	}
 
 
@@ -115,3 +114,43 @@ int main()
 }
 #endif
 
+//void operator<<(ostream& _cout)
+//{
+//	_cout << _year;
+//	_cout << _month;
+//	_cout << _day;
+//}
+#if 0
+class Date
+{
+public:
+	friend ostream& operator<<(ostream& _cout, const Date& This);
+	void InitDate(int year = 2019, int month = 9, int day = 28)
+	{
+		_year = year;
+		_month = month;
+		_day = day;
+	}
+
+	int _year;
+	int _month;
+	int _day;
+};
+
+ostream& operator<<(ostream& _cout, const Date& d)
+{
+	_cout << d._year;
+	_cout << d._month;
+	_cout << d._day;
+	return _cout;
+}
+
+int main()
+{
+	Date d;
+	d.InitDate();
+	//d << cout;
+	cout << d;
+	return 0;
+}
+#endif
