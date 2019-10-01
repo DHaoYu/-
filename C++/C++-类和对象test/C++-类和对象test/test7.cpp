@@ -29,6 +29,12 @@ int main()
 #if 0
 class T1
 {
+public:
+	T1(char c = 'c', int b = 1, double a = 1.0)
+		:_c(c)
+		, _b(b)
+		, _a(a)
+	{}
 	char  _c;
 	int _b;
 	double _a;
@@ -36,6 +42,12 @@ class T1
 
 class T2
 {
+public:
+	T2(char c = 'c', int b = 1, double a = 1.0)
+		:_c(c)
+		, _b(b)
+		, _a(a)
+	{}
 	char _c;
 	double _a;
 	int _b;
@@ -43,12 +55,15 @@ class T2
 
 int main()
 {
-	cout << sizeof(T1) << endl;//元素在类中的排列顺序不同，
-	cout << sizeof(T2) << endl;//最后类占用内存大小也可能不同
+	T1 t1;
+	T2 t2;
+	cout << "T1 size is :" << sizeof(T1) << endl;//元素在类中的排列顺序不同，
+	cout << "T2 size is :" << sizeof(T2) << endl;//最后类占用内存大小也可能不同
 
 	return 0;
 }
 #endif
+
 
 #if 0
 class Date
