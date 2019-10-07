@@ -4,6 +4,77 @@
 
 using namespace std;
 
+
+#if 0
+class Date
+{
+public:
+	Date()
+	{
+	}
+
+	Date(int year, int month, int day)
+	:_year(year)
+	,_month(month)
+	,_day(day)
+	{
+	}
+private:
+	int _year;
+	int _month;
+	int _day;
+};
+
+int main()
+{
+	Date d;//调用无参的构造函数
+	Date d1();//不是调用无参构造函数，而是写成了函数声明！！！
+	Date d2(2019, 10, 7);//调用有参构造函数
+	return 0;
+}
+
+#endif
+
+#if 0
+class Date
+{
+public:
+	Date()
+	{
+	}
+	
+	~Date()
+	{
+	}
+private:
+	int _year;
+	int _month;
+	int _day;
+};
+
+int main()
+{
+	return 0;
+}
+#endif
+#if 0
+class Date
+{
+private:
+	int _year;
+	int _month;
+	int _day;
+};
+int main()
+{
+	Date d1;//按照默认的构造函数生成初始化好的对象d1
+	Date d2();//
+	Date d3(2019, 10, 01);//
+	return 0;
+}
+
+#endif
+
 #if 0
 class Date
 {
