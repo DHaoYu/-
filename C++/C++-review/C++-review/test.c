@@ -32,3 +32,13 @@
 //		printf("%d ", *(arr + i));
 //	return 0;
 //}
+
+#if 0
+#include<iostream>
+using namespace std;
+
+int main()
+{
+	cout <<"10" << endl;
+}
+#endif
