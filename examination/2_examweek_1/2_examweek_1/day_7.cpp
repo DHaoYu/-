@@ -96,7 +96,9 @@ int main()
 	cout << count << endl;
 }
 #endif
-//连续最大和   3 -1 2 1 ---> 4
+
+//连续最大和   3 -1 2 1 ---> 5
+//-1 2 -3 4 -2 5 6
 #include<iostream>
 #include<vector>
 using namespace std;
