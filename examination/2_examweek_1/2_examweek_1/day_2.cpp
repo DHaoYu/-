@@ -1,4 +1,4 @@
-#define _CRT_SECURE_NO_WARNNINGS 1
+#define _CRT_SECURE_NO_WARNINGS 1
 #include<iostream>
 using namespace std;
 
@@ -97,3 +97,5 @@ int main()
 	return 0;
 }
 #endif
+
+
