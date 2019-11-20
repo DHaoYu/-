@@ -135,6 +135,7 @@ int main()
 }
 #endif
 
+#if 0
 #include<iostream>
 using namespace std;
 
@@ -151,3 +152,4 @@ int main()
 	}
 	cout << x;
 }
+#endif

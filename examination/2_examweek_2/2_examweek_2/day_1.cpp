@@ -68,3 +68,26 @@ int main()
 	cout << StrToInt("-12315689") << endl;
 }
 #endif
+#if 0
+#include<sstream>
+#include<iostream>
+#include<string>
+using namespace std;
+
+int StrToInt(string str) {
+	for (int i = (str[0] == '-' || str[0] == '+') ? 1 : 0; i < str.size(); i++)
+		if ((str[i] <= '0' || str[i] >= '9'))
+			return 0;
+	stringstream ss(str);
+	int ret = 0;
+	ss >> ret;
+	return ret;
+}
+
+int main()
+{
+	//string s = "1a33";
+	cout << StrToInt("2147483648");
+	return 0;
+}
+#endif
