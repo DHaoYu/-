@@ -79,3 +79,20 @@ int main()
 	cout << str.substr(0, 1);
 }
 #endif
+#if 0
+#include<iostream>
+using namespace std;
+struct A
+{
+	char a1;
+	char a2;
+	char a3;
+	int a4;
+	char a5;
+};
+
+int main()
+{
+	cout << sizeof(A) << endl;
+}
+#endif
