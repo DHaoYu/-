@@ -1,3 +1,4 @@
+#if 0
 #define _CRT_SECURE_NO_WARNNINGS 1
 #include <Windows.h> 
 #include <tchar.h>
@@ -69,3 +70,4 @@ int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCm
 	}
 	return 0;
 }
+#endif
