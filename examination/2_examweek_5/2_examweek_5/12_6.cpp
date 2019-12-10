@@ -35,6 +35,7 @@ int main()
 }
 #endif
 
+#if 0
 //三角形
 //需要注意的是数据类型用double
 
@@ -57,3 +58,4 @@ int main()
 {
 	cout<<FindGreatestSumOfSubArray({ 1, -2, 3, 10, -4, 7, 2, -5 });
 }
+#endif
