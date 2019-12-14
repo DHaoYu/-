@@ -124,6 +124,7 @@ void main()
 }
 #endif
 
+#if 0
 class Base
 {
 public:
@@ -158,3 +159,4 @@ int main()
 	d.Print();
 	return 0;
 }
+#endif
