@@ -38,6 +38,7 @@ int main()
 }
 #endif
 
+#if 0
 class A
 {
 protected:
@@ -70,3 +71,4 @@ int main()
 	C c;
 	c.Print();
 }
+#endif
