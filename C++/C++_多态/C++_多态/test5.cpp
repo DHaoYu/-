@@ -74,6 +74,7 @@ int main()
 }
 #endif
 
+#if 0
 class B
 {
 public:
@@ -112,3 +113,44 @@ int main()
 	D d;
 	cout << sizeof(D) << endl;
 }
+#endif
+
+class B
+{
+public:
+	virtual void Func()
+	{
+		cout << "B::Func()" << endl;
+	}
+};
+
+class D : public B
+{
+public:
+	virtual void Func()
+	{
+		cout << "D::Func()" << endl;
+	}
+};
+
+void Fun(B& b)
+{
+	b.Func();
+}
+
+int main()
+{
+	B b;
+	D d;
+	Fun(b);
+	Fun(d);
+
+}
+
+
+
+	//B *pd = new D();
+	//B *pb = new B();
+	//pd->Func();
+	//pb->Func();
+//}
