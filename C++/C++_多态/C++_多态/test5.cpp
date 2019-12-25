@@ -115,6 +115,7 @@ int main()
 }
 #endif
 
+#if 0
 class B
 {
 public:
@@ -154,3 +155,4 @@ int main()
 	//pd->Func();
 	//pb->Func();
 //}
+#endif
