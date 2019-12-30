@@ -1,10 +1,9 @@
-#if 0
 #define _CRT_SECURE_NO_WARNNINGS 1
 #include<iostream>
 #include<array>
 
 using namespace std;
-
+#if 0
 //array 不能够自行改变大小
 int main()
 {
@@ -14,3 +13,11 @@ int main()
 
 }
 #endif
+
+int main()
+{
+	char a = '1';
+	cout << a + 1 << endl;
+
+	return 0;
+}
