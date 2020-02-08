@@ -181,6 +181,24 @@ void MergeSort(vector<int>& v, int L, int R)
 	Merge(v, L, R, M+1);
 }
 
+//·´×ª¶þ²æÊ÷
+void swapTree(TreeNode *&root){
+	TreeNode *tmp = root->left;
+	root->left = root->right;
+	root->right = tmp;
+}
+
+void invertBinaryTree(TreeNode *root) {
+	// write your code here
+	if(root == NULL)
+		return;
+
+	invertBinaryTree(root->left);
+	invertBinaryTree(root->right);
+
+	swapTree(root);
+}
+
 int main()
 {
 	vector<int> v = { 7, 6, 3, 1, 9, 0, 4, 2, 5, 8 };
