@@ -12,7 +12,7 @@ int main()
 	//a1.swap(a2);进行交换时，也许要大小一致
 
 }
-#endif
+
 
 int main()
 {
@@ -21,3 +21,5 @@ int main()
 
 	return 0;
 }
+#endif
+
