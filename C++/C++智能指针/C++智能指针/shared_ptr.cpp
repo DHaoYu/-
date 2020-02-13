@@ -157,7 +157,7 @@ struct ListNode
 
 	~ListNode()
 	{
-		std::cout << "~ListNode" << std::endl;
+		std::cout << "~ListNode" << this << std::endl;
 	}
 	//ListNode* _pPre;
 	//ListNode* _pNext;
@@ -227,3 +227,5 @@ int main()
 	return 0;
 }
 #endif
+
+//同样可以根据RAII的思想来实现一个范围锁，不用考虑解锁，只需要进行加锁就可以
