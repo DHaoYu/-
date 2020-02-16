@@ -18,7 +18,6 @@ struct BSTNode
 	BSTNode<T>* _pRight;
 };
 
-//Find Insert
 template<class T>
 class BSTree
 {
@@ -146,6 +145,7 @@ public:
 				pRSwap = pRSwap->_pLeft;
 			}
 			pCur->_data = pRSwap->_data;
+			//将pSwap右边的树与pParent结点连接
 			if (pRSwap == pParent->_pLeft)
 				pParent->_pLeft = pRSwap->_pRight;
 			else
