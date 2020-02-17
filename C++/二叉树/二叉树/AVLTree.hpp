@@ -29,6 +29,10 @@ public:
 		:_pRoot(nullptr)
 	{}
 
+	~AVLTree()
+	{
+		_Destroy(_pRoot);
+	}
 	bool Insert(const pair<K, V>& data)
 	{
 		if (_pRoot == nullptr)
@@ -65,16 +69,17 @@ public:
 			else
 				pParent->_bf++;
 
-			if (0 == pParent->_bf)
+			if (0 == pParent->_bf) //parent树的高度没有改变 直接break
 				break;
 			else if (1 == pParent->_bf || -1 == pParent->_bf)
-			{//向上走一步
+			{//高度改变了 需要向上走一步
 				pCur = pParent;
 				pParent = pCur->_pParent;
 			}
 			else
 			{
 				// pParent的平衡因子==+-2 时，需要进行旋转并将其平衡因子值修改
+				//对其pParent为根的结点进行旋转处理
 				if (2 == pParent->_bf)
 				{
 					if (pCur->_bf == 1)
@@ -163,14 +168,31 @@ private:
 
 	void RotateRL(Node* pParent)
 	{
-		RotateR(pParent->_pRight);
+		//先将bf进行记录，在旋转完成后，pParent || pSubR 平衡因子可能会改变
+		Node* pSubR = pParent->_pRight;
+		Node* pSubRL = pSubR->_pLeft;
+		int bf = pSubRL->_bf; 
+		RotateR(pSubR);
 		RotateL(pParent);
+		
+		if (1 == bf)
+			pParent->_bf = -1;
+		else if (-1 == bf)
+			pSubR->_bf = 1;
 	}
 
 	void RotateLR(Node* pParent)
 	{
-		RotateL(pParent->_pLeft);
+		Node* pSubL = pParent->_pLeft;
+		Node* pSubLR = pSubL->_pRight;
+		int bf = pSubLR->_bf;
+		RotateL(pSubL);
 		RotateR(pParent);
+
+		if (1 == bf)
+			pSubL->_bf = -1;
+		else if (-1 == bf)
+			pParent->_bf = 1;
 	}
 
 	void _InOrder(Node* pRoot)
@@ -205,6 +227,16 @@ private:
 			return false;
 
 		return _IsBalanceTree(pRoot->_pLeft) && _IsBalanceTree(pRoot->_pRight);
+	}
+
+	void _Destroy(Node*& pRoot)
+	{
+		if (pRoot)
+		{
+			_Destroy(pRoot->_pLeft);
+			_Destroy(pRoot->_pRight);
+			delete pRoot;
+		}
 	}
 private:
 	Node* _pRoot;
