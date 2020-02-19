@@ -78,12 +78,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="leafOfparentsum.cpp" />
     <ClCompile Include="map_test.cpp" />
     <ClCompile Include="test.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AVLTree.hpp" />
     <ClInclude Include="BSTree.hpp" />
+    <ClInclude Include="My_map.hpp" />
+    <ClInclude Include="My_set.hpp" />
     <ClInclude Include="R-BTree.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
