@@ -1,4 +1,5 @@
 #define _CRT_SECURE_NO_WARNNINGS 1
+#if 0
 #include<vector>
 #include<iostream>
 using namespace std;
@@ -117,7 +118,7 @@ void QuickSort(vector<int>& v, int low, int high)
 		v[high] = v[low];
 	}
 	v[low] = baseval;
-	QuickSort(v, start, low);
+	QuickSort(v, start, low - 1);
 	QuickSort(v, low + 1, end);
 }
 
@@ -221,3 +222,4 @@ int main()
 	//	cout << e << " ";
 	return 0;
 }
+#endif
