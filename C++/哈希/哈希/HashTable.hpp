@@ -20,7 +20,7 @@ struct Elem
 	State _state;
 };
 
-template<class T>
+template<class T, bool IsLine = true>
 class HashTable
 {
 public:
@@ -38,6 +38,7 @@ public:
 		CheckCapacity();
 		size_t hashAddr = HashFunc(value); //取到应当插入的地址
 		//检测hashAddr的地址是否可以插入
+		int i = 0;
 		while (EMPTY != _ht[hashAddr]._state)
 		{
 			//发生哈希冲突， 使用线性探测解决
@@ -47,10 +48,19 @@ public:
 				return false;
 			}
 
-			++hashAddr;
-			//hashAddr 走到空间的边界
-			if (hashAddr == _ht.capacity())
-				hashAddr = 0;
+			if (IsLine) //线性探测
+			{
+				++hashAddr;
+				//hashAddr 走到空间的边界
+				if (hashAddr == _ht.capacity())
+					hashAddr = 0;
+			}
+			else
+			{ //二次探测
+				++i;
+				hashAddr = hashAddr + 2 * i + 1;
+				hashAddr %= _ht.capacity();
+			}
 		}
 		//找到位置，直接插入
 		_ht[hashAddr]._value = value;
@@ -63,16 +73,26 @@ public:
 	int Find(const T& value)
 	{
 		size_t hashAddr = HashFunc(value);
+		int i = 0;
 		while (EMPTY != _ht[hashAddr]._state)
 		{
 			if (EXIST == _ht[hashAddr]._state &&
 				value == _ht[hashAddr]._value)
 				return hashAddr;
-			hashAddr++;
+			
+			i++;
+			if (IsLine)
+			{//线性探测处理方式
+				hashAddr++;
+				if (hashAddr == _ht.capacity())
+					hashAddr = 0;
+			}
+			else //二次探测
+			{
+				hashAddr = hashAddr + 2*i + 1;
+				hashAddr %= _ht.capacity();
+			}
 			//找到边界
-			if (hashAddr == _ht.capacity())
-				hashAddr = 0;
-
 		}
 		return -1;
 	}
@@ -122,6 +142,7 @@ private:
 	size_t _size; //记录哈希表中有效元素的个数
 };
 
+#if 1
 void TestHash()
 {
 	HashTable<int> ht;
@@ -141,3 +162,4 @@ void TestHash()
 	cout<<ht.Find(10);
 	cout<<ht.Erase(4);
 }
+#endif
