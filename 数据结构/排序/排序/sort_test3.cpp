@@ -104,32 +104,59 @@ void HeapSort(vector<int> v, int len)
 	}
 }
 
-//快速排序
-void _QuickSort(vector<int>& v, int begin, int end)
+////快速排序
+//void _QuickSort(vector<int>& v, int begin, int end)
+//{
+//	int finish = end;
+//	int start = begin;
+//	if (begin >= end) 
+//		return;
+//	int base = v[begin];
+//	while (begin < end)
+//	{
+//		while (begin < end && v[end] > base)
+//			end--;
+//		v[begin] = v[end];
+//		while (begin < end && v[begin] < base)
+//			begin++;
+//		v[end] = v[begin];
+//	}
+//	v[begin] = base;
+//	_QuickSort(v, start, begin - 1);
+//	_QuickSort(v, begin + 1, finish);
+//}
+
+//快速排序（从小到大）
+void _QuickSort(vector<int> arr, int left, int right)
 {
-	int finish = end;
-	int start = begin;
-	if (begin >= end) 
+	if (left >= right)
 		return;
-	int base = v[begin];
-	while (begin < end)
+	int i, j, base, temp;
+	i = left, j = right;
+	base = arr[left];  //取最左边的数为基准数
+	while (i < j)
 	{
-		while (begin < end && v[end] > base)
-			end--;
-		v[begin] = v[end];
-		while (begin < end && v[begin] < base)
-			begin++;
-		v[end] = v[begin];
+		while (arr[j] >= base && i < j)
+			j--;
+		while (arr[i] <= base && i < j)
+			i++;
+		if (i < j)
+		{
+			swap(arr[i], arr[j]);
+		}
 	}
-	v[begin] = base;
-	_QuickSort(v, start, begin - 1);
-	_QuickSort(v, begin + 1, finish);
+	//基准数归位
+	arr[left] = arr[i];
+	arr[i] = base;
+	_QuickSort(arr, left, i - 1);//递归左边
+	_QuickSort(arr, i + 1, right);//递归右边
 }
 
 void QuickSort(vector<int> v, int len)
 {
 	_QuickSort(v, 0, len - 1);
 }
+
 #include<stack>
 int getPartition(vector<int> &nums, int low, int height)
 {
@@ -146,6 +173,7 @@ int getPartition(vector<int> &nums, int low, int height)
 	nums[low] = keyVal;
 	return low;
 }
+
 void quickSortNonRecursive(vector<int> &nums, int low, int height)
 {
 	stack<int> s;
@@ -185,36 +213,56 @@ void quickSortNonRecursive(vector<int> &nums, int low, int height)
 	}
 }
 
-//归并排序
-void Merge(vector<int>& v, int L, int M, int R)
-{
-	int left_size = M - L + 1;
-	int right_size = R - M;
-	int* left = new int[left_size];
-	int* right = new int[right_size];
-	for (int i = 0; i < left_size; i++)
-		left[i] = v[i + L];
-	for (int i = 0; i < right_size; i++)
-		right[i] = v[i + M + 1];
-	int i = 0, j = 0, k = L;
-	while (i < left_size && j < right_size)
-	{
-		while (i < left_size && left[i] < right[j])
-			v[k++] = left[i++];
-		while (j < right_size && right[j] < left[i])
-			v[k++] = right[j++];
+////归并排序
+//void Merge(vector<int>& v, int L, int M, int R)
+//{
+//	int left_size = M - L + 1;
+//	int right_size = R - M;
+//	int* left = new int[left_size];
+//	int* right = new int[right_size];
+//	for (int i = 0; i < left_size; i++)
+//		left[i] = v[i + L];
+//	for (int i = 0; i < right_size; i++)
+//		right[i] = v[i + M + 1];
+//	int i = 0, j = 0, k = L;
+//	while (i < left_size && j < right_size)
+//	{
+//		while (i < left_size && left[i] < right[j])
+//			v[k++] = left[i++];
+//		while (j < right_size && right[j] < left[i])
+//			v[k++] = right[j++];
+//	}
+//	while(i < left_size)
+//		v[k++] = left[i++];
+//	while (j < right_size)
+//		v[k++] = right[j++];
+//}
+void Merge(vector<int>& arr, int l, int mid, int r){
+	int *help = new int[r - l + 1];//辅助数组
+	int i = 0;
+	int lIndex = l;
+	int rIndex = mid + 1;
+	while (lIndex <= mid && rIndex <= r){
+		help[i++] = arr[lIndex] < arr[rIndex] ? arr[lIndex++] : arr[rIndex++];
 	}
-	while(i < left_size)
-		v[k++] = left[i++];
-	while (j < right_size)
-		v[k++] = right[j++];
+	//左边和右边肯定有一边到头了，不可能同时，因为每次只移动一边
+	while (lIndex <= mid){
+		help[i++] = arr[lIndex++];
+	}
+	while (rIndex <= r){
+		help[i++] = arr[rIndex++];
+	}
+	//将排好序的辅助数组赋值给原始数组，不需要返回值
+	for (i = 0; i < r - l + 1; i++){
+		arr[l + i] = help[i];
+	}
 }
 
 void _MergeSort(vector<int>& v, int L, int R)
 {
 	if (L == R)
 		return;
-	int M = (R + L - 1) / 2;
+	int M = (R + L) / 2;
 	_MergeSort(v, L, M);
 	_MergeSort(v, M + 1, R);
 	Merge(v, L, M, R);
@@ -232,8 +280,8 @@ void Func()
 {
 	vector<int> v;
 	srand(time(nullptr));
-	for (int i = 0; i < 3000000; i++)
-		v.push_back(rand() % 10000000);
+	for (int i = 0; i < 1000; i++)
+		v.push_back(rand() % 1000000);
 	clock_t start, end;
 	
 	//start = clock();
@@ -250,54 +298,62 @@ void Func()
 
 int main()
 {
-	vector<int> v;
+	vector<int> v, v1;
 	srand(time(nullptr));
-	for (int i = 0; i < 30000; i++)
-		v.push_back(rand()%100000);
+	for (int i = 0; i < 100000000; i++)
+		v.push_back(rand()%10000000000);
 	clock_t start, end;
-	Func();
+	//Func();
 	//vector<int> v = { 5, 4, 7, 0, 9, 1, 3, 6, 2, 8 };
 	/*
 	start = clock();
-	InsertSort(v, 30000);
+	InsertSort(v, 100000000);
 	end = clock();
-	cout << "30000数据，插入排序需要：" << end - start << "毫秒" << endl;
+	cout << "100000000数据，插入排序需要：" << end - start << "毫秒" << endl;
+
+	start = clock();
+	BubbleSort(v, 100000000);
+	sort(v.begin(), v.end());
+	end = clock();
+	cout << "100000000数据，冒泡排序需要：" << end - start << "毫秒" << endl;
+	
+	start = clock();
+	SelectSort(v, 100000000);
+	end = clock();
+	cout << "100000000数据，选择排序需要：" << end - start << "毫秒" << endl;
 	*/
-	//start = clock();
-	//BubbleSort(v, 30000);
-	//sort(v.begin(), v.end());
-	//end = clock();
-	//cout << "30000数据，冒泡排序需要：" << end - start << "毫秒" << endl;
 	/*
 	start = clock();
-	SelectSort(v, 30000);
+	ShellSort(v, 100000000);
 	end = clock();
-	cout << "30000数据，选择排序需要：" << end - start << "毫秒" << endl;
-	
-	start = clock();
-	ShellSort(v, 30000);
-	end = clock();
-	cout << "30000数据，希尔排序需要：" << end - start << "毫秒" << endl;
-
-	start = clock();
-	HeapSort(v, 30000);
-	end = clock();
-	cout << "30000数据，堆排序需要：" << end - start << "毫秒" << endl;
-	
-	start = clock();
-	QuickSort(v, 30000);
-	end = clock();
-	cout << "30000数据，快速排序（递归）需要：" << "数据过大，递归计算效率太低" << endl;
-	
-	start = clock();
-	quickSortNonRecursive(v, 0, 29999);
-	end = clock();
-	cout << "30000数据，快速排序需要：" << end - start << "毫秒" << endl;
-
-	start = clock();
-	MergeSort(v, 30000);
-	end = clock();
-	cout << "30000数据，归并排序需要：" << end - start << "毫秒" << endl;
+	cout << "100000000数据，希尔排序需要：" << end - start << "毫秒" << endl;
 	*/
+	/*
+	start = clock();
+	HeapSort(v, 100000000);
+	end = clock();
+	cout << "100000000数据，堆排序需要：" << end - start << "毫秒" << endl;
+	*/
+
+	//start = clock();
+	//QuickSort(v, 100000000);
+	//end = clock();
+	//cout << "100000000数据，快速排序（递归）需要：" << "数据过大，递归计算效率太低" << endl;
+	//cout << "100000000数据，快速排序（递归）需要：" << end - start << "毫秒" << endl;
+	/*
+	start = clock();
+	quickSortNonRecursive(v, 0, 100000000 -1);
+	end = clock();
+	cout << "100000000数据，快速排序（非递归）需要：" << end - start << "毫秒" << endl;
+	*/
+	start = clock();
+	MergeSort(v, 100000000);
+	end = clock();
+	cout << "100000数据，归并排序需要：" << end - start << "毫秒" << endl;
+
+	start = clock();
+	sort(v.begin(), v.end());
+	cout << "STL中的sort函数，排序需要：" << end - start << "毫秒" << endl;
+	end = clock();
 	return 0;
 }
