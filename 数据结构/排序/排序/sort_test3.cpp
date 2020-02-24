@@ -1,5 +1,4 @@
-
-
+#if 0
 #include<vector>
 #include<iostream>
 #include<algorithm>
@@ -295,7 +294,7 @@ void Func()
 	cout << "3000000数据，algorithm算法排序函数需要：" << end - start << "毫秒" << endl;
 }
 
-
+#include<algorithm>
 int main()
 {
 	vector<int> v, v1;
@@ -346,14 +345,18 @@ int main()
 	end = clock();
 	cout << "100000000数据，快速排序（非递归）需要：" << end - start << "毫秒" << endl;
 	*/
+	/*
 	start = clock();
 	MergeSort(v, 100000000);
 	end = clock();
 	cout << "100000数据，归并排序需要：" << end - start << "毫秒" << endl;
+	*/
 
 	start = clock();
 	sort(v.begin(), v.end());
-	cout << "STL中的sort函数，排序需要：" << end - start << "毫秒" << endl;
 	end = clock();
+	cout << "STL中的sort函数，排序需要：" << end - start << "毫秒" << endl;
+
 	return 0;
 }
+#endif
