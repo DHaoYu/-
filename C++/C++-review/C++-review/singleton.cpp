@@ -67,6 +67,7 @@ int main()
 }
 #endif
 
+#if 0
 #include<vector>
 #include<unordered_map>
 #include<string>
@@ -107,3 +108,4 @@ public:
 		return res;
 	}
 };
+#endif
