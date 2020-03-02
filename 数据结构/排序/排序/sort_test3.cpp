@@ -87,7 +87,7 @@ void AdjustDown(vector<int>& v, int parent, int len)
 
 void CreateHeap(vector<int>& v, int len)
 {
-	int parent = len - 1;
+	int parent = len/2 - 1;
 	for (; parent >= 0; parent--)
 		AdjustDown(v, parent, len);
 
