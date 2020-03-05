@@ -170,6 +170,16 @@ int main()
 
 #endif
 
+#include<vector>
+
+class B
+{
+public:
+	B() :v(8, 0)
+	{}
+private:
+	vector<int> v;
+};
 int main()
 {
 	auto b = 4;
@@ -179,4 +189,6 @@ int main()
 	cout << typeid(a).name() << endl;
 	cout << typeid(arr).name() << endl;
 	cout << typeid(c).name() << endl;
+	B b1;
+	std::vector<int> v;
 }

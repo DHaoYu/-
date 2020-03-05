@@ -1,5 +1,5 @@
 
-
+#if 0
 //分解因数
 #include<iostream>
 using namespace std;
@@ -29,4 +29,5 @@ int main()
 	return 0;
 }
 
-//求美国节日 
+//求美国节日
+#endif
