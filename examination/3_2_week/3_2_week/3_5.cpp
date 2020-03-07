@@ -74,6 +74,8 @@ int main()
 	return 0;
 }
 #endif
+
+#if 0
 #include<vector>
 using namespace std;
 
@@ -81,8 +83,9 @@ void ShortPath(vector<vector<int>> v, int n)
 {
 	vector<int> dp(n, 999);
 	dp[0] = v[0][1];
-	for (int i = 0; i < n; i++)
+	for (int i = 1; i < n; i++)
 	{
-
+		if (v[i][])
 	}
 }
+#endif
