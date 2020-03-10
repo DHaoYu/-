@@ -170,6 +170,8 @@ int main()
 
 #endif
 
+
+#if 0
 #include<vector>
 
 class B
@@ -192,3 +194,18 @@ int main()
 	B b1;
 	std::vector<int> v;
 }
+#endif
+
+#if 0
+#include<vector>
+int main()
+{
+	//int *p = (int*)malloc(40);
+	//int *p1 = (int*)malloc(1024*200);
+	//int *p2 = (int*)malloc(40);
+	vector<int> v{ 1, 2, 3, 4 };
+	vector<int> v1 = v;
+	return 0;
+}
+#endif
+
