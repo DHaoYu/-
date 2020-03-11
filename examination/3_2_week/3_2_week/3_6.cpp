@@ -56,6 +56,8 @@ int main()
 }
 #endif
 
+#if 0
+
 #include<iostream>
 using namespace std;
 int Cal_week(int year, int month, int day)
@@ -177,3 +179,4 @@ int main()
 		American_Holidays(year);
 	return 0;
 }
+#endif
