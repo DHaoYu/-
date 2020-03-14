@@ -30,7 +30,7 @@ int main()
 #endif
 
 
-
+#if 0
 size_t strlcpy(char *dst, const char *src, size_t siz)
 {
 	register char *d = dst;
@@ -58,3 +58,55 @@ int main()
 
 	cout<<strlcpy(s2, s1, 7);
 }
+#endif
+
+
+#if 0
+struct A
+{
+	char a;
+	int b;
+	double c;
+	int a1;
+	char a2;
+};
+
+struct B
+{
+	char a;
+	char c;
+	double b;
+	int _a;
+};
+
+int main()
+{
+	cout << sizeof(A) << endl;
+	cout << sizeof(B) << endl;
+}
+#endif
+
+#if 0
+int main()
+{
+	int x;
+	int a = 10;
+	while(cin >> x)
+	{
+		switch (x)
+		{
+		case 1:
+			if (a > 1 && a <= 10)
+			{
+				cout << "a == " << a << endl;
+			}
+			break;
+		case 2:
+			cout <<"x is "<< x << endl;
+			break;
+		default:
+			cout << "defaut" << endl;
+		}
+	}
+}
+#endif
