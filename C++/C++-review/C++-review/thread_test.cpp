@@ -82,6 +82,7 @@ int main() {
 }
 #endif
 
+#if 0
 #include<vector>
 
 void LIS(vector<int>& v)
@@ -113,3 +114,26 @@ int main()
 	}
 	return 0;
 }
+#endif
+
+#if 0
+char getFirstRepeatChar(string strSrc) {
+	// write code here
+	for (size_t i = 0; i < strSrc.size(); ++i)
+	{
+		for (size_t j = i + 1; j < strSrc.size(); ++j)
+		{
+			if (strSrc[i] == strSrc[j])
+			return strSrc[i];
+		}
+	}
+	return 0;
+}
+
+#include<string>
+int main()
+{
+	string str = "wuhanjiayou";
+	cout << getFirstRepeatChar(str) << endl;
+}
+#endif
