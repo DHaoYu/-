@@ -33,7 +33,7 @@ int main()
 }
 #endif
 
-#if 1
+#if 0
 int main()
 {
 	int n;
@@ -95,3 +95,5 @@ int main()
 	return 0;
 }
 #endif
+
+
