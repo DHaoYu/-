@@ -71,6 +71,7 @@ int main()
 }
 #endif
 
+#if 0
 struct node
 {
 	int val;
@@ -133,3 +134,4 @@ int main()
 	node* root1 = BuildTree(pre, inorder, 6);
 	cout << " " << endl;
 }
+#endif
