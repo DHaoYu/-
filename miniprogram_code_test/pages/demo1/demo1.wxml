@@ -1,0 +1,27 @@
+<!--pages/demo1/demo1.wxml-->
+
+<swiper class="swiperBox" indicator-dots="true" circular autoplay="true" interval="2500">
+  <swiper-item class="swiperItem">
+    <image src="https://i1.hdslb.com/bfs/archive/b601fd04702768d5052c0d1d59bcbd61c48eed55.jpg@336w_190h.webp"></image>
+  </swiper-item>  
+  <swiper-item class="swiperItem">
+    <image src="https://i1.hdslb.com/bfs/archive/156682b22b34a4f9029477f55ed5a41ee076185e.jpg@336w_190h.webp"></image>
+  </swiper-item>  
+  <swiper-item class="swiperItem">
+    <image src="https://i2.hdslb.com/bfs/archive/e90dc2eaada0949016e863bdac21c1f5162f51da.png@336w_190h.webp"></image>
+  </swiper-item>
+</swiper>
+
+<view class="loginBox">
+  <button type="primary">登录</button>
+  <button type="warn">退出登录</button>
+  <button size="mini" type="primary">支付</button>
+  <button loading="true">加载中...</button>
+  <button form-type="submit">提交</button>
+  <button type="primary" open-type="contact">联系客服</button>
+</view>
+
+<form bindsubmit="onSubmit">
+  <input class="ipt" type="text" placeholder="请输入内容" focus="true" cursor="100" confirm-type="send"></input>
+  <button form-type="submit">提交</button>
+</form>

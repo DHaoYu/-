@@ -162,7 +162,7 @@ private:
 	vector<T> v;
 };
 
-
+#if 0
 int main()
 {
 	vector<int> vec = { 1, 5, 6, 2, 4, 7, 9, 8, 0, 3 };
@@ -176,3 +176,4 @@ int main()
 	s.PirntSort();
 	return 0;
 }
+#endif

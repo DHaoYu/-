@@ -15,6 +15,7 @@ int main()
 
 #endif
 
+#if 0
 #include <iostream>
 #include <vector>
 #include <stack>
@@ -67,3 +68,37 @@ int main()
 		std::cout << std::endl;
 	}
 }
+#endif
+
+#if 0
+#include <string>
+using namespace std;
+
+int main()
+{
+	int n;
+	cin >> n;
+	while (n--)
+	{
+		string str;
+		cin >> str;
+		int pos, count = 0;
+		while (1)
+		{
+			pos = str.find("001010");
+			if (pos >= 0)
+			{
+				str.erase(pos + 3, 1);
+				count++;
+			}
+			pos = str.find("0010");
+			if (pos < 0)
+				break;
+			str.erase(pos + 2, 1);
+			count++;
+		}
+		cout << count << endl;
+	}
+	return 0;
+}
+#endif

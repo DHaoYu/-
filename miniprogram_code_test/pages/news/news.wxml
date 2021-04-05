@@ -1,0 +1,38 @@
+<!--pages/news/news.wxml-->
+
+<view class="box" hover-class="boxHover">
+  <view class="item" hover-class="itemHover" hover-stop-propagation>1111</view>
+
+</view>
+
+<view class="linkLogs">
+  <navigator url="/pages/logs/logs">点击查看日志</navigator>
+  <navigator url="/pages/index/index">点击跳转首页</navigator>
+</view>
+
+<scroll-view class="scrollX" scroll-x="true" scroll-left="140px">
+  <view class="scrollRow">
+    <view class="scrollBox">111</view>
+    <view class="scrollBox">222</view>
+    <view class="scrollBox">333</view>
+    <view class="scrollBox">444</view>
+    <view class="scrollBox">555</view>
+  </view>
+</scroll-view>
+
+<scroll-view class="scrollY" scroll-y="true" scroll-top="50px">
+  <view class="scrollCol">
+    <view class="scrollBox">111</view>
+    <view class="scrollBox">222</view>
+    <view class="scrollBox">333</view>
+    <view class="scrollBox">444</view>
+    <view class="scrollBox">555</view>
+  </view>
+</scroll-view>
+
+<image src="/images/mmexport1575719024658.jpg" mode="widthFix"></image>
+
+
+
+<text user-select="true" space="emsp">董皓宇        董皓宇董皓宇董皓宇董皓宇董皓宇董皓宇董皓宇董皓宇董皓宇董皓宇董皓宇董皓宇董皓宇董皓宇董皓宇</text>
+<view>donghaoyudonghaoyudonghaoyudonghaoyudonghaoyudonghaoyudonghaoyudonghaoyudonghaoyudonghaoyudonghaoyudonghaoyudonghaoyudonghaoyudonghaoyudonghaoyudonghaoyu</view>
