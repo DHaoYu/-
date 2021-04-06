@@ -20,3 +20,8 @@ button{
   height: 80rpx;
   border: 4rpx solid red;
 }
+
+.iconBox{
+  padding: 40rpx;
+  text-align: center;
+}

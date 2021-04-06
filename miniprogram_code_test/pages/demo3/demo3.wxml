@@ -1,0 +1,8 @@
+<!--pages/demo3/demo3.wxml-->
+
+<view wx:for="{{5}}">{{index+1}}. 董皓宇 {{item}}</view>
+<view wx:for="{{[111,222,333,444]}}">{{index}}. {{item}}</view>
+
+<!-- <view wx:for="{{listArr}}">{{index+1}}. {{item}}</view> -->
+
+<view wx:for="{{listArr}}" wx:for-index="i" wx:for-item="content">{{i+1}}. {{content}}</view>

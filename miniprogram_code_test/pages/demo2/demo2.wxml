@@ -1,0 +1,39 @@
+<!--pages/demo2/demo2.wxml-->
+
+<view>小程序开发</view>
+
+<view>"{{message}}"</view>
+
+<view style="white-space:pre-wrap">
+  姓名：{{human.name}}
+  年龄：{{human.age}}
+  性别：{{human.sex}}
+</view>
+
+<view>
+  {{listArr[0]}} - {{listArr[1]}} - {{listArr[2]}}
+</view>
+
+<block wx:if="{{true}}">
+  <navigator url="/pages/demo1/demo1">跳转demo1</navigator>
+  <view>这是跳转demo1的情况</view>
+</block>
+<block wx:else>
+  <navigator url="/pages/demo2/demo2">跳转demo2</navigator>
+</block>
+
+<text decode>&nbsp;</text>
+<view wx:if="{{data == 1}}">周1</view>
+<view wx:elif="{{data == 2}}">周2</view>
+<view wx:elif="{{data == 3}}">周3</view>
+<block wx:elif="{{data == 4}}">
+  <view>今天是周4</view>
+  <navigator url="/pages/demo1/demo1">所以跳转demo1</navigator>
+</block>
+<view wx:elif="{{data == 5}}">周5</view>
+<view wx:elif="{{data == 6}}">周6</view>
+<view wx:elif="{{data == 7}}">周天</view>
+<view wx:else>非法日期</view>
+
+<view wx:if="{{length > 5}}">length > 5</view>
+<view decode wx:else>length  5</view>

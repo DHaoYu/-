@@ -25,3 +25,19 @@
   <input class="ipt" type="text" placeholder="请输入内容" focus="true" cursor="100" confirm-type="send"></input>
   <button form-type="submit">提交</button>
 </form>
+
+<view>
+  <progress percent="60" show-info="true" font-size="15" active="true" bindactiveend="加载完成"></progress>
+</view>
+
+<view class="progress-box">
+  <progress percent="40" active/>
+  <icon type="cancel"></icon>
+  <switch checked></switch>
+</view>
+
+
+<view class="iconBox">
+  <icon type="success" size="50"></icon>
+  <view>提交成功</view>
+</view>
