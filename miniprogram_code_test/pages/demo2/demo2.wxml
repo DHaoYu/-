@@ -4,6 +4,8 @@
 
 <view>"{{message}}"</view>
 
+<button bindtap="navBack">返回</button>
+
 <view style="white-space:pre-wrap">
   姓名：{{human.name}}
   年龄：{{human.age}}

@@ -27,7 +27,7 @@
 </form>
 
 <view>
-  <progress percent="60" show-info="true" font-size="15" active="true" bindactiveend="加载完成"></progress>
+  <progress percent="60" show-info="true" font-size="15" active="false" bindactiveend="加载完成"></progress>
 </view>
 
 <view class="progress-box">

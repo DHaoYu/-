@@ -10,7 +10,7 @@
   <navigator url="/pages/index/index">点击跳转首页</navigator>
 </view>
 
-<scroll-view class="scrollX" scroll-x="true" scroll-left="140px">
+<scroll-view class="scrollX" scroll-x="true" scroll-left="40px">
   <view class="scrollRow">
     <view class="scrollBox">111</view>
     <view class="scrollBox">222</view>
